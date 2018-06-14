@@ -63,7 +63,6 @@ function searchByWeight(people) {
     if(el.weight == userInputWeight) {
       return true;
     }
-    // return true if el.height matches userInputHeight
   });
   return newArray;
 }
@@ -76,7 +75,6 @@ function searchByGender(people)
     if(el.gender == userInputGender.toLowerCase()) {
       return true;
     }
-    // return true if el.height matches userInputHeight
   });
   return newArray;
 }
@@ -91,7 +89,6 @@ function searchByEyeColor(people)
     if(el.eyeColor == userInputEyeColor.toLowerCase()) {
       return true;
     }
-    // return true if el.height matches userInputHeight
   });
   return newArray;
 
@@ -110,7 +107,6 @@ function searchByOccupation(people)
     if(el.occupation == userInputOccupation.toLowerCase()) {
       return true;
     }
-    // return true if el.height matches userInputHeight
   });
   return newArray;
 }
@@ -123,14 +119,12 @@ function searchById(people)
     if(el.id === userInputId) {
       return true;
     }
-    // return true if el.height matches userInputHeight
   });
   return newArray[0];
 }
 
 // Menu function to call once you find who you are looking for
 function mainMenu(person, people){
-  let linebreak = document.createElement("br");
   /* Here we pass in the entire person object that we found in our search, as well as the entire original dataset of people. We need people in order to find descendants and other information that the user may want. */
   if(!person){
     alert("Could not find that individual.");
@@ -186,8 +180,7 @@ function searchByName(people){
        return true;
     }
   });
-  let newObj = newArray[0];
-  return newObj;
+  return newArray[0];
 
 }
 
