@@ -5,6 +5,9 @@ Build all of your functions for displaying and gathering information below (GUI)
 // app is the function called to start the entire application
 function app(people){
   let searchType = promptFor("Do you know the name of the person you are looking for? Enter 'yes' or 'no'", yesNo).toLowerCase();
+  for(let i = 0; i < 13; i++){
+    document.getElementById(`${i}`).innerHTML = '';
+  }
   switch(searchType){
     case 'yes':
     let foundPerson = searchByName(people);
@@ -61,7 +64,7 @@ function searchByWeight(people) {
   let userInputWeight = prompt("How much does the person weigh?").trim();
 
   let newArray = people.filter(function (el) {
-    if(el.weight == userInputWeight) {
+    if(el.weight === userInputWeight) {
       return true;
     }
   });
@@ -73,7 +76,7 @@ function searchByGender(people)
   let userInputGender = prompt("What is the person's gender?").trim();
 
   let newArray = people.filter(function (el) {
-    if(el.gender == userInputGender.toLowerCase()) {
+    if(el.gender === userInputGender.toLowerCase()) {
       return true;
     }
   });
@@ -87,7 +90,7 @@ function searchByEyeColor(people)
   let userInputEyeColor = prompt("What is the person's Eye Color?").trim();
 
   let newArray = people.filter(function (el) {
-    if(el.eyeColor == userInputEyeColor.toLowerCase()) {
+    if(el.eyeColor === userInputEyeColor.toLowerCase()) {
       return true;
     }
   });
@@ -105,7 +108,7 @@ function searchByOccupation(people)
   let userInputOccupation = prompt("What is the person's occupation?").trim();
 
   let newArray = people.filter(function (el) {
-    if(el.occupation == userInputOccupation.toLowerCase()) {
+    if(el.occupation === userInputOccupation.toLowerCase()) {
       return true;
     }
   });
@@ -173,17 +176,24 @@ function mainMenu(person, people){
 }
 }
 
-function searchByName(people){
-  let firstName = promptFor("What is the person's first name?", chars);
-  let lastName = promptFor("What is the person's last name?", chars);
-  let newArray = people.filter(function (el) {
-    if(el.firstName.toLowerCase() === firstName.toLowerCase() && el.lastName.toLowerCase() === lastName.toLowerCase()) {
-       return true;
+function searchByName(people) {
+    for(let i = 0; i < 13; i++){
+        document.getElementById(`${i}`).innerHTML = '';
     }
+<<<<<<< HEAD
   });
   return newArray[0];
+=======
+    let firstName = promptFor("What is the person's first name?", chars);
+    let lastName = promptFor("What is the person's last name?", chars);
+    let newArray = people.filter(function (el) {
+        if (el.firstName.toLowerCase() === firstName.toLowerCase() && el.lastName.toLowerCase() === lastName.toLowerCase()) {
+            return true;
+        }
+    });
+    return newArray[0];
+>>>>>>> 8ece4f9d5bceef019fd2e998ebf3c284dd017be3
 }
-
 // alerts a list of people
 function displayPeople(people){
   alert(people.map(function(person){
