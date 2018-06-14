@@ -14,7 +14,7 @@ function app(people){
     break;
     default:
     alert("Wrong! Please try again, following the instructions dummy. :)");
-    app(people); // restart app
+    app(people);
     break;
   }
 }
@@ -30,7 +30,21 @@ function searchByTraits(people) {
     case "weight":
       filteredPeople = searchByWeight(people);
       break;
-    // so on and so forth
+    case "eye color":
+      filteredPeople =  searchByEyeColor(people);
+      break;
+    case "gender":
+      filteredPeople = searchByGender(people);
+      break;
+    case "age":
+      filteredPeople = searchByAge(people);
+      break;
+    case "occupation":
+      filteredPeople = searchByOccupation(people);
+      break;
+    case "id":
+      filteredPeople = searchById(people);
+      break;
     default:
       alert("You entered an invalid search type! Please try again.");
       searchByTraits(people);
@@ -53,6 +67,41 @@ function searchByWeight(people) {
     // return true if el.height matches userInputHeight
   });
   return newArray;
+}
+
+function searchByGender(people)
+{
+   let userInputGender = prompt("What is the persons gender?");
+
+  let newArray = people.filter(function (el) {
+    if(el.gender == userInputGender.toLowerCase()) {
+      return true;
+    }
+    // return true if el.height matches userInputHeight
+  });
+  return newArray;
+}
+
+
+function searchByEyeColor(people)
+{
+
+
+}
+
+function searchByAge(people)
+{
+
+}
+
+function searchByOccupation(people)
+{
+
+}
+
+function searchById(people)
+{
+
 }
 
 // Menu function to call once you find who you are looking for
@@ -119,7 +168,7 @@ function displayPerson(person){
 // function that prompts and validates user input
 function promptFor(question, valid){
   do{
-    let response = prompt(question).trim();
+    var response = prompt(question).trim();
   } while(!response || !valid(response));
   return response;
 }
