@@ -10,6 +10,12 @@
     <link rel="stylesheet" type="text/css" href="styles.css">
   </head>
   <body>
+    <div class="searchButton">
+      <button id="searchButton" onclick="app(data)">Start Searching</button>
+    </div>
+    <div class="searchAgain">
+      <button hidden id="searchAgain" onclick="searchByName(data)">Search Again</button>
+    </div>
     <div class="container">
       <br>
       <br>
@@ -19,12 +25,7 @@
           <h1 class="underline">Most Wanted</h1>
         </div>
       </div>
-      <br>
-      <div class="row center">
-        <div class="col-md">
-          <button onclick="app(data)">Start Searching</button>
-        </div>
-      </div><br><br>
+      <br><br>
       <div class="row center">
         <div class="col-md">
           <p id="0"></p>

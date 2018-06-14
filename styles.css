@@ -1,3 +1,17 @@
+.searchButton {
+    text-align: right;
+    position: fixed;
+    top: 30px;
+    right: 550px;
+}
+
+.searchAgain {
+    text-align: right;
+    position: fixed;
+    top: 70px;
+    right: 550px;
+}
+
 .referenceIcon {
     text-align: left;
     position: fixed;

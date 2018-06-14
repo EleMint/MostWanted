@@ -20,7 +20,7 @@ function app(people){
 }
 
 function searchByTraits(people) {
-  let userSearchChoice = prompt("What would you like to search by? 'height', 'weight', 'eye color', 'gender', 'age', 'occupation', 'Id'.").trim();
+  let userSearchChoice = prompt("What would you like to search by? 'height', 'weight', 'eye color', 'gender', 'age', 'occupation'.");
   let filteredPeople;
 
   switch(userSearchChoice) {
@@ -181,7 +181,10 @@ function searchByName(people){
     }
   });
   return newArray[0];
+<<<<<<< HEAD
 
+=======
+>>>>>>> cd634b7bcd5ff070163a6716f404641fb075185a
 }
 
 // alerts a list of people
@@ -204,7 +207,7 @@ function displayPerson(person){
 function promptFor(question, valid){
   do{
     var response = prompt(question).trim();
-  } while(!response || !valid(response)); 
+  } while(!response || !valid(response));
   return response;
 }
 
