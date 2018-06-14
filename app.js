@@ -50,8 +50,8 @@ function searchByTraits(people) {
       searchByTraits(people);
       break;
   }  
-
-  let foundPerson = filteredPeople[0];
+  console.log(filteredPeople.length);
+  let foundPerson = filteredPeople;
 
   mainMenu(foundPerson, people);
 
@@ -108,12 +108,30 @@ function searchById(people)
 function mainMenu(person, people){
 
   /* Here we pass in the entire person object that we found in our search, as well as the entire original dataset of people. We need people in order to find descendants and other information that the user may want. */
-
   if(!person){
     alert("Could not find that individual.");
     return app(people); // restart
   }
+  console.log(person.length);
+  if(person.length > 1)
+  {
+    for(let i = 0; i < person.length; i++)
+    {
+      let myStr = "";
+      console.log(person[i].firstName, person[i].lastName);
+      for(var property1 in person[i])
+      {
 
+        myStr += person[i][property1] + ' ';
+        console.log(person[i][property1]);
+      }
+
+      document.getElementById(`${i}`).innerHTML = myStr;
+      document.getElementById(`${i}`).diplay = block;
+    }
+    let someVar = prompt(`Found ${myStr}`);
+  } 
+  else {
   let displayOption = prompt("Found " + person.firstName + " " + person.lastName + " . Do you want to know their 'info', 'family', or 'descendants'? Type the option you want or 'restart' or 'quit'");
 
   switch(displayOption){
@@ -134,6 +152,7 @@ function mainMenu(person, people){
     default:
     return mainMenu(person, people); // ask again
   }
+}
 }
 
 function searchByName(people){
