@@ -138,7 +138,7 @@ function mainMenu(person, people){
       document.getElementById(`${i}`).innerHTML = myStr;
       document.getElementById(`${i}`).hidden = false;
     }
-    //let someVar = prompt(`Found ${myStr}`);
+    document.getElementById('searchAgain').hidden = false;
   } 
   else {
   let displayOption = prompt("Found " + person.firstName + " " + person.lastName + " . Do you want to know their 'info', 'family', or 'descendants'? Type the option you want or 'restart' or 'quit'");
@@ -172,9 +172,7 @@ function searchByName(people){
        return true;
     }
   });
-  let newObj = newArray[0];
-  return newObj;
-
+  return newArray[0];
 }
 
 // alerts a list of people
