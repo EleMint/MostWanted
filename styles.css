@@ -1,9 +1,17 @@
-.reference {
+.referenceIcon {
     text-align: left;
     position: fixed;
     bottom: 0;
     right: 5px;
     font-size: 10px;
+}
+
+.referenceNames {
+    text-align: right;
+    position: fixed;
+    bottom: 0;
+    left: 5px;
+    font-size: 15px;
 }
 
 .center {
@@ -12,4 +20,8 @@
 
 .underline {
     text-decoration: underline;
+}
+
+.hidden {
+    display: none;
 }
