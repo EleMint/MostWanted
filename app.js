@@ -5,6 +5,9 @@ Build all of your functions for displaying and gathering information below (GUI)
 // app is the function called to start the entire application
 function app(people){
   let searchType = promptFor("Do you know the name of the person you are looking for? Enter 'yes' or 'no'", yesNo).toLowerCase();
+  for(let i = 0; i < 13; i++){
+    document.getElementById(`${i}`).innerHTML = '';
+  }
   switch(searchType){
     case 'yes':
     displayPerson(searchByName(people));
@@ -173,6 +176,9 @@ function mainMenu(person, people){
 }
 
 function searchByName(people) {
+    for(let i = 0; i < 13; i++){
+        document.getElementById(`${i}`).innerHTML = '';
+    }
     let firstName = promptFor("What is the person's first name?", chars);
     let lastName = promptFor("What is the person's last name?", chars);
     let newArray = people.filter(function (el) {
