@@ -7,7 +7,8 @@ function app(people){
   let searchType = promptFor("Do you know the name of the person you are looking for? Enter 'yes' or 'no'", yesNo).toLowerCase();
   switch(searchType){
     case 'yes':
-    displayPerson(searchByName(people));
+    let foundPerson = searchByName(people);
+    mainMenu(foundPerson, people);
     break;
     case 'no':
     searchByTraits(people);
@@ -153,7 +154,7 @@ function mainMenu(person, people){
 
   switch(displayOption){
     case "info":
-    // TODO: get person's info
+    document.getElementById('0').innerHTML = person.toSting();
     break;
     case "family":
     // TODO: get person's family
@@ -181,10 +182,6 @@ function searchByName(people){
     }
   });
   return newArray[0];
-<<<<<<< HEAD
-
-=======
->>>>>>> cd634b7bcd5ff070163a6716f404641fb075185a
 }
 
 // alerts a list of people
