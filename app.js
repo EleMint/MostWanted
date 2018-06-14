@@ -50,7 +50,6 @@ function searchByTraits(people) {
       searchByTraits(people);
       break;
   }  
-  console.log(filteredPeople.length);
   let foundPerson = filteredPeople;
 
   mainMenu(foundPerson, people);
@@ -71,7 +70,7 @@ function searchByWeight(people) {
 
 function searchByGender(people)
 {
-   let userInputGender = prompt("What is the persons gender?");
+  let userInputGender = prompt("What is the person's gender?");
 
   let newArray = people.filter(function (el) {
     if(el.gender == userInputGender.toLowerCase()) {
@@ -86,6 +85,15 @@ function searchByGender(people)
 function searchByEyeColor(people)
 {
 
+  let userInputEyeColor = prompt("What is the person's Eye Color?");
+
+  let newArray = people.filter(function (el) {
+    if(el.gender == userInputEyeColor.toLowerCase()) {
+      return true;
+    }
+    // return true if el.height matches userInputHeight
+  });
+  return newArray;
 
 }
 
@@ -106,7 +114,7 @@ function searchById(people)
 
 // Menu function to call once you find who you are looking for
 function mainMenu(person, people){
-
+  let linebreak = document.createElement("br");
   /* Here we pass in the entire person object that we found in our search, as well as the entire original dataset of people. We need people in order to find descendants and other information that the user may want. */
   if(!person){
     alert("Could not find that individual.");
@@ -121,15 +129,16 @@ function mainMenu(person, people){
       console.log(person[i].firstName, person[i].lastName);
       for(var property1 in person[i])
       {
-
+        myStr += property1 + ': ' + ' ';
         myStr += person[i][property1] + ' ';
         console.log(person[i][property1]);
+        myStr += '<br>';
       }
 
       document.getElementById(`${i}`).innerHTML = myStr;
-      document.getElementById(`${i}`).diplay = block;
+      document.getElementById(`${i}`).hidden = false;
     }
-    let someVar = prompt(`Found ${myStr}`);
+    //let someVar = prompt(`Found ${myStr}`);
   } 
   else {
   let displayOption = prompt("Found " + person.firstName + " " + person.lastName + " . Do you want to know their 'info', 'family', or 'descendants'? Type the option you want or 'restart' or 'quit'");
