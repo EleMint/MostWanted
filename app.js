@@ -57,7 +57,7 @@ function searchByTraits(people) {
 }
 
 function searchByWeight(people) {
-  let userInputWeight = prompt("How much does the person weigh?");
+  let userInputWeight = prompt("How much does the person weigh?").trim();
 
   let newArray = people.filter(function (el) {
     if(el.weight == userInputWeight) {
@@ -70,7 +70,7 @@ function searchByWeight(people) {
 
 function searchByGender(people)
 {
-  let userInputGender = prompt("What is the person's gender?");
+  let userInputGender = prompt("What is the person's gender?").trim();
 
   let newArray = people.filter(function (el) {
     if(el.gender == userInputGender.toLowerCase()) {
@@ -85,10 +85,10 @@ function searchByGender(people)
 function searchByEyeColor(people)
 {
 
-  let userInputEyeColor = prompt("What is the person's Eye Color?");
+  let userInputEyeColor = prompt("What is the person's Eye Color?").trim();
 
   let newArray = people.filter(function (el) {
-    if(el.gender == userInputEyeColor.toLowerCase()) {
+    if(el.eyeColor == userInputEyeColor.toLowerCase()) {
       return true;
     }
     // return true if el.height matches userInputHeight
@@ -104,12 +104,28 @@ function searchByAge(people)
 
 function searchByOccupation(people)
 {
+  let userInputOccupation = prompt("What is the person's occupation?").trim();
 
+  let newArray = people.filter(function (el) {
+    if(el.occupation == userInputOccupation.toLowerCase()) {
+      return true;
+    }
+    // return true if el.height matches userInputHeight
+  });
+  return newArray;
 }
 
 function searchById(people)
 {
+  let userInputId = prompt("What is the person's Id number?");
 
+  let newArray = people.filter(function (el) {
+    if(el.id === userInputId) {
+      return true;
+    }
+    // return true if el.height matches userInputHeight
+  });
+  return newArray[0];
 }
 
 // Menu function to call once you find who you are looking for
@@ -120,7 +136,6 @@ function mainMenu(person, people){
     alert("Could not find that individual.");
     return app(people); // restart
   }
-  console.log(person.length);
   if(person.length > 1)
   {
     for(let i = 0; i < person.length; i++)
@@ -138,7 +153,6 @@ function mainMenu(person, people){
       document.getElementById(`${i}`).innerHTML = myStr;
       document.getElementById(`${i}`).hidden = false;
     }
-    document.getElementById('searchAgain').hidden = false;
   } 
   else {
   let displayOption = prompt("Found " + person.firstName + " " + person.lastName + " . Do you want to know their 'info', 'family', or 'descendants'? Type the option you want or 'restart' or 'quit'");
