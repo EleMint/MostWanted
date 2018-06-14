@@ -7,7 +7,7 @@ function app(people){
   var searchType = promptFor("Do you know the name of the person you are looking for? Enter 'yes' or 'no'", yesNo).toLowerCase();
   switch(searchType){
     case 'yes':
-    searchByName();
+    displayPerson(searchByName(people));
     break;
     case 'no':
     searchByTraits(people);
@@ -91,7 +91,13 @@ function mainMenu(person, people){
 function searchByName(people){
   var firstName = promptFor("What is the person's first name?", chars);
   var lastName = promptFor("What is the person's last name?", chars);
-
+  let newArray = people.filter(function (el) {
+    if(el.firstName.toLowerCase() === firstName.toLowerCase() && el.lastName.toLowerCase() === lastName.toLowerCase()) {
+       return true;
+    }
+  });
+  newObj = newArray[0];
+  return newObj;
 
 }
 
