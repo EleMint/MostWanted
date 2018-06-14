@@ -63,7 +63,6 @@ function searchByWeight(people) {
     if(el.weight == userInputWeight) {
       return true;
     }
-    // return true if el.height matches userInputHeight
   });
   return newArray;
 }
@@ -76,7 +75,6 @@ function searchByGender(people)
     if(el.gender == userInputGender.toLowerCase()) {
       return true;
     }
-    // return true if el.height matches userInputHeight
   });
   return newArray;
 }
@@ -91,7 +89,6 @@ function searchByEyeColor(people)
     if(el.eyeColor == userInputEyeColor.toLowerCase()) {
       return true;
     }
-    // return true if el.height matches userInputHeight
   });
   return newArray;
 
@@ -110,7 +107,6 @@ function searchByOccupation(people)
     if(el.occupation == userInputOccupation.toLowerCase()) {
       return true;
     }
-    // return true if el.height matches userInputHeight
   });
   return newArray;
 }
@@ -123,7 +119,6 @@ function searchById(people)
     if(el.id === userInputId) {
       return true;
     }
-    // return true if el.height matches userInputHeight
   });
   return newArray[0];
 }
@@ -186,6 +181,10 @@ function searchByName(people){
     }
   });
   return newArray[0];
+<<<<<<< HEAD
+
+=======
+>>>>>>> cd634b7bcd5ff070163a6716f404641fb075185a
 }
 
 // alerts a list of people
