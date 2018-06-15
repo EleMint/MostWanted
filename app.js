@@ -99,9 +99,78 @@ function searchByEyeColor(people)
 }
 
 function searchByAge(people)
-{
-
+{//people -> person
+  let ageArray = getAge(people);
+  console.log(ageArray);
+  let newArray = [];
+  let userInputAge = parseFloat(prompt("What is the person's age?").trim());
+  for(let i = 0; i < ageArray.length; i++) {
+      if (userInputAge === ageArray[i]){
+        newArray.push(people[i]);
+        console.log(people[i]);
+      }
+  }
+  console.log(newArray);
+    return newArray;
 }
+
+function getAge(people){
+  let curDate = Date();
+  let currentDate = curDate.split(' ');
+  let neededParts = [];
+  switch(currentDate[1]) {
+      case "Jan":
+          neededParts.push('1');
+          break;
+      case "Feb":
+          neededParts.push('2');
+          break;
+      case "Mar":
+          neededParts.push('3');
+          break;
+      case "Apr":
+          neededParts.push('4');
+          break;
+      case "May":
+          neededParts.push('5');
+          break;
+      case "Jun":
+          neededParts.push('6');
+          break;
+      case "Jul":
+          neededParts.push('7');
+          break;
+      case "Aug":
+          neededParts.push('8');
+          break;
+      case "Sep":
+          neededParts.push('9');
+          break;
+      case "Oct":
+          neededParts.push('10');
+          break;
+      case "Nov":
+          neededParts.push('11');
+          break;
+      case "Dec":
+          neededParts.push('12');
+          break;
+  }
+  neededParts.push(currentDate[2], currentDate[3]);
+  let ageArray = [];
+  for(let i = 0; i < people.length; i++){
+    let personDOB = people[i].dob.split("/");
+    let ageY = neededParts[2] - personDOB[2];
+    let ageM = neededParts[0] - personDOB[0];
+    let ageD = neededParts[1] - personDOB[1];
+    if((ageM < 0 || ageM === 0) && (ageD < 0 || ageD === 0) ){
+     ageY--;
+    }
+    ageArray.push(ageY);
+  }
+  return ageArray;
+}
+
 
 function searchByOccupation(people)
 {
