@@ -120,11 +120,13 @@ function searchById(people)
   let userInputId = prompt("What is the person's Id number?");
 
   let newArray = people.filter(function (el) {
-    if(el.id === userInputId) {
+    if(el.id == userInputId) {
+      console.log(el.id);
       return true;
     }
   });
   return newArray[0];
+
 }
 
 // Menu function to call once you find who you are looking for
@@ -157,7 +159,13 @@ function mainMenu(person, people){
 
   switch(displayOption){
     case "info":
-    document.getElementById('0').innerHTML = person.toSting();
+      let myObj = '';
+      for(var property1 in person)
+      {
+        myObj += property1 + ': ' + ' ';
+        myObj += person[property1] + '\n';
+      };
+      alert(myObj);
     break;
     case "family":
     // TODO: get person's family
@@ -177,13 +185,6 @@ function mainMenu(person, people){
 }
 
 function searchByName(people) {
-    for(let i = 0; i < 13; i++){
-        document.getElementById(`${i}`).innerHTML = '';
-    }
-<<<<<<< HEAD
-  });
-  return newArray[0];
-=======
     let firstName = promptFor("What is the person's first name?", chars);
     let lastName = promptFor("What is the person's last name?", chars);
     let newArray = people.filter(function (el) {
@@ -192,7 +193,6 @@ function searchByName(people) {
         }
     });
     return newArray[0];
->>>>>>> 8ece4f9d5bceef019fd2e998ebf3c284dd017be3
 }
 // alerts a list of people
 function displayPeople(people){
