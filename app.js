@@ -1,7 +1,6 @@
 /*
 Build all of your functions for displaying and gathering information below (GUI).
 */
-
 // app is the function called to start the entire application
 function app(people){
   let searchType = promptFor("Do you know the name of the person you are looking for? Enter 'yes' or 'no'", yesNo).toLowerCase();
@@ -60,15 +59,40 @@ function searchByTraits(people) {
 
 }
 
+function searchByHeight(people)
+{
+  let userInputHeight = prompt("How tall is the person?").trim();
+
+  let newArray = people.filter(function (el) {
+    if(el.height == userInputHeight) {
+      console.log(el.height);
+      return true;
+    }
+  });
+  console.log(newArray);
+  if (newArray.length > 1) 
+  {
+  return newArray;
+  }
+  else 
+  return newArray[0];
+}
+
 function searchByWeight(people) {
   let userInputWeight = prompt("How much does the person weigh?").trim();
 
   let newArray = people.filter(function (el) {
-    if(el.weight === userInputWeight) {
+    if(el.weight == userInputWeight) {
       return true;
     }
   });
+  console.log(newArray);
+  if (newArray.length > 1) 
+  {
   return newArray;
+  }
+  else 
+  return newArray[0];
 }
 
 function searchByGender(people)
