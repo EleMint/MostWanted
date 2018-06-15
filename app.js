@@ -266,7 +266,7 @@ function mainMenu(person, people){
     let counter = 0;
     let myStr = "";
     let something = descendants(person, people, counter, myStr);
-    alert(something);
+    console.log(something);
     break;
     case "restart":
     app(people); // restart
@@ -292,19 +292,9 @@ function searchByName(people) {
 
 function descendants(person, people, counter, myStr)
 {
-  while(counter < people.length)
+  if(counter < people.length - 1)
   {
-    if (person.id == people[counter].parents[0] || person.id == people[counter].parents[1])
-    {
-      counter++
-      myStr +=  people[counter].firstName + people[counter].lastName;
-      descendants(person, people, counter, myStr);
-    }
-    else if(person.id !== people[counter].parents[0] && person.id !== people[counter].parents[1])
-    {
-      myStr = person.firstName + person.lastName;
-    }
-  return myStr;
+    if()
   }
 }
 
