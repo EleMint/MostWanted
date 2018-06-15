@@ -69,7 +69,6 @@ function searchByHeight(people)
       return true;
     }
   });
-  console.log(newArray);
   if (newArray.length > 1) 
   {
   return newArray;
@@ -264,7 +263,10 @@ function mainMenu(person, people){
     // TODO: get person's family
     break;
     case "descendants":
-    // TODO: get person's descendants
+    let counter = 0;
+    let myStr = "";
+    let something = descendants(person, people, counter, myStr);
+    alert(something);
     break;
     case "restart":
     app(people); // restart
@@ -287,6 +289,25 @@ function searchByName(people) {
     });
     return newArray[0];
 }
+
+function descendants(person, people, counter, myStr)
+{
+  while(counter < people.length)
+  {
+    if (person.id == people[counter].parents[0] || person.id == people[counter].parents[1])
+    {
+      counter++
+      myStr +=  people[counter].firstName + people[counter].lastName;
+      descendants(person, people, counter, myStr);
+    }
+    else if(person.id !== people[counter].parents[0] && person.id !== people[counter].parents[1])
+    {
+      myStr = person.firstName + person.lastName;
+    }
+  return myStr;
+  }
+}
+
 // alerts a list of people
 function displayPeople(people){
   alert(people.map(function(person){
