@@ -256,22 +256,26 @@ function mainMenu(person, people){
       {
         myObj += property1 + ': ' + ' ';
         myObj += person[property1] + '\n';
-      };
+      }
       alert(myObj);
     break;
     case "family":
     // TODO: get person's family
     break;
     case "descendants":
-    let myStr = "";
-    let something = descendants(person, people, myStr);
-    if(something === '')
+    let myArr = [];
+    myArr.push(person);
+    descendants(myArr[0], people, myArr);
+    if(myArr[0] === '')
     {
         alert(`${person.firstName} ${person.lastName} does not have any descendants.`)
     }
     else
     {
-        alert(`${person.firstName} ${person.lastName} has descendants of: \n${something}`)
+        for(let i = 0; i < myArr.length; i++)
+        {
+            document.getElementById(`${i}`).innerHTML = `${myArr[i + 1].firstName} ${myArr[i + 1].lastName}`;
+        }
     }
     break;
     case "restart":
@@ -296,39 +300,27 @@ function searchByName(people) {
     return newArray[0];
 }
 
-
-
-function descendants(person, people, myStr)
+function descendants(person, people, myArr)
 {
- //create var for children of origin person
-
- for(let i = 0; i < people.length; i++) {      //looping through all people and add id # for child of original person
-     if (person.id === people[i].parents[0] || person.id === people[i].parents[1]) {
-         myStr += people[i].firstName.toString() + ' ';
-         myStr += people[i].lastName.toString() + '  ';
-         descendants(people[i], people, myStr);
-         //end of search for person parent
-         // if(i === people.length)
-         //create var for grandchildren of origin person
-         // {
-         //  //loop through people to find siblings
-         //     for (let j = 0; j < people.length; j++)
-         //     {
-         //         if (people[i].parents[0] === people[j].parents[0] || people[i].parents[0] === people[j].parents[1] || people[i].parents[1] == people[j].parents[0] || people[i].parents[1] == people[j].parents[1])
-         //         {
-         //
-         //             myStr += people[j].id.toString();
-         //             //search for grandchildren from siblings
-         //             descendants(people[j]);
-         //         }
-         //     }
-         // }
-     }
- }
- return myStr;
+    //loop through everyone in the data.js array and search for descendants
+    for(let i = 0; i < people.length; i++)
+    {
+        if (person.id === people[i].parents[0] || person.id === people[i].parents[1])
+        {
+            myArr.push(people[i]);
+            descendants(people[i], people, myArr);
+        }
+    }
 }
 
-// alerts a list of people
+
+
+
+
+
+
+
+
 function displayPeople(people){
   alert(people.map(function(person){
     return person.firstName + " " + person.lastName;
