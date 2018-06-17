@@ -263,10 +263,16 @@ function mainMenu(person, people){
     // TODO: get person's family
     break;
     case "descendants":
-    let counter = 0;
     let myStr = "";
-    let something = descendants(person, people, counter, myStr);
-    console.log(something);
+    let something = descendants(person, people, myStr);
+    if(something === '')
+    {
+        alert(`${person.firstName} ${person.lastName} does not have any descendants.`)
+    }
+    else
+    {
+        alert(`${person.firstName} ${person.lastName} has descendants of: \n${something}`)
+    }
     break;
     case "restart":
     app(people); // restart
@@ -290,12 +296,36 @@ function searchByName(people) {
     return newArray[0];
 }
 
-function descendants(person, people, counter, myStr)
+
+
+function descendants(person, people, myStr)
 {
-  if(counter < people.length - 1)
-  {
-    if()
-  }
+ //create var for children of origin person
+
+ for(let i = 0; i < people.length; i++) {      //looping through all people and add id # for child of original person
+     if (person.id === people[i].parents[0] || person.id === people[i].parents[1]) {
+         myStr += people[i].firstName.toString() + ' ';
+         myStr += people[i].lastName.toString() + '  ';
+         descendants(people[i], people, myStr);
+         //end of search for person parent
+         // if(i === people.length)
+         //create var for grandchildren of origin person
+         // {
+         //  //loop through people to find siblings
+         //     for (let j = 0; j < people.length; j++)
+         //     {
+         //         if (people[i].parents[0] === people[j].parents[0] || people[i].parents[0] === people[j].parents[1] || people[i].parents[1] == people[j].parents[0] || people[i].parents[1] == people[j].parents[1])
+         //         {
+         //
+         //             myStr += people[j].id.toString();
+         //             //search for grandchildren from siblings
+         //             descendants(people[j]);
+         //         }
+         //     }
+         // }
+     }
+ }
+ return myStr;
 }
 
 // alerts a list of people
