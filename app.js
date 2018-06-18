@@ -1,7 +1,4 @@
-/*
-Build all of your functions for displaying and gathering information below (GUI).
-*/
-// app is the function called to start the entire application
+
 function app(people){
   let searchType = promptFor("Do you know the name of the person you are looking for? Enter 'yes' or 'no'", yesNo).toLowerCase();
   for(let i = 0; i < 13; i++){
@@ -53,9 +50,7 @@ function searchByTraits(people) {
       searchByTraits(people);
       break;
   }
-
   mainMenu(filteredPeople, people);
-
 }
 
 function searchByHeight(people)
@@ -100,9 +95,7 @@ function searchByGender(people)
       return true;
     }
   });
-
 }
-
 
 function searchByEyeColor(people)
 {
@@ -114,8 +107,6 @@ function searchByEyeColor(people)
       return true;
     }
   });
-
-
 }
 
 function searchByAge(people)
@@ -188,7 +179,6 @@ function getAge(people){
   return ageArray;
 }
 
-
 function searchByOccupation(people)
 {
   let userInputOccupation = prompt("What is the person's occupation?").trim();
@@ -198,7 +188,6 @@ function searchByOccupation(people)
       return true;
     }
   });
-
 }
 
 function searchById(people)
@@ -214,7 +203,6 @@ function searchById(people)
 
 }
 
-// Menu function to call once you find who you are looking for
 function mainMenu(person, people){
   /* Here we pass in the entire person object that we found in our search, as well as the entire original dataset of people. We need people in order to find descendants and other information that the user may want. */
   if(!person){
@@ -253,7 +241,19 @@ function mainMenu(person, people){
       alert(myObj);
     break;
     case "family":
-    family(person, people, myArr);
+    let familyArr = family(person, people, myArr);
+    let reducedArr = reduceArry(people, familyArr);
+    if(reducedArr[0] === '')
+    {
+        alert(`${person.firstName} ${person.lastName} is lonely and does not have a family.`)
+    }
+    else
+    {
+        for(let i = 0; i < reducedArr.length; i++)
+        {
+            document.getElementById(`${i}`).innerHTML = `${reducedArr[i].firstName} ${reducedArr[i].lastName}`;
+        }
+    }
     break;
     case "descendants":
     descendants(myArr[0], people, myArr);
@@ -279,7 +279,6 @@ function mainMenu(person, people){
   }
 }
 }
-// MIKE WAS HERE, LOCK YOUR COMPUTER! ;)
 
 function searchByName(people) {
     let firstName = promptFor("What is the person's first name?", chars);
@@ -290,6 +289,17 @@ function searchByName(people) {
         }
     });
     return newArray[0];
+}
+
+function getObjectFromId(id, people)
+{
+    for(let i = 0; i < people.length; i++)
+    {
+        if(id === people[i].id)
+        {
+            return people[i];
+        }
+    }
 }
 
 function descendants(person, people, myArr)
@@ -305,74 +315,79 @@ function descendants(person, people, myArr)
     }
 }
 
-
-function ascendants(person, people,)
+function ascendants(person, people)
 {
 
+    let parents = [];
+    for(let i = 0; i < people.length; i++)
+    {
+        if(person.id === people[i].parents[0] || person.id === people[i].parents[1])
+        {
+            parents.push(getObjectFromId(people[i].parents[0], people));
+            parents.push(getObjectFromId(people[i].parents[1], people));
+        }
+    }
+    return parents;
+}
+
+function ourDescendants(person, people)
+{
+
+    let children = people.filter(function(el){
+        if(person.id === el.parents[0] || person.id === el.parents[1])
+        {
+            return true;
+        }
+    });
+    let newArr = [];
+    for(let i = 0; i < children.length; i++)
+    {
+        newArr.push(getObjectFromId(children[i], people));
+    }
+    return children;
 }
 
 function family(person, people, myArr)
 {
-  if(hasParents(person, people) === false && hasChild(person, people) === true)
-  {
-    descendants(person, people, myArr)
-  }
-
-
+    let curArr = [];
+    let familyFound = findFamily(person, people, myArr);
+    let foundFamily =curArr.concat(familyFound);
+    let resultArr = curArr.concat(familyWeb(person, people, foundFamily));
+    return resultArr.concat(foundFamily);
 }
 
-function hasParents(person, people)
+function findFamily(person, people, myArr)
 {
-  if(person.parents[0] !== undefined)
-  {
-    return true;
-  }
-  else
-  {
-    return false;
-  }
+    let parents = ascendants(person, people);
+        let parentsArr = myArr.concat(parents);
+    let children = ourDescendants(person, people);
+        let childrenArr = myArr.concat(children);
+    return parentsArr.concat(childrenArr);
 }
 
-function hasChild(person, people)
+function familyWeb(person, people, myArr)
 {
-  for(let i = 0; i < people.length; i++)
-  {
-    if(person.id === people[i].parents[0] || person.id === people[i],parents[1])
+    let resultArr = [];
+    let curArr = [];
+    for(let i = 0; i < myArr.length; i++)
     {
-      return true;
+        resultArr = curArr.concat(findFamily(myArr[i], people, myArr));
     }
-    else
+    return resultArr;
+}
+
+function reduceArry (people, myArr)
+{
+    let resultArr = [];
+    for(let i = 0; i < myArr.length; i++)
     {
-      return false;
+        if(!resultArr.includes(myArr[i])){
+            resultArr.push(myArr[i]);
+        }
     }
-  }
-
+   return resultArr;
 }
 
-
-
-
-
-
-
-
-
-function displayPeople(people){
-  alert(people.map(function(person){
-    return person.firstName + " " + person.lastName;
-  }).join("\n"));
-}
-
-function displayPerson(person){
-  // print all of the information about a person:
-  // height, weight, age, name, occupation, eye color.
-  let personInfo = "First Name: " + person.firstName + "\n";
-  personInfo += "Last Name: " + person.lastName + "\n";
-  // TODO: finish getting the rest of the information to display
-  alert(personInfo);
-}
-
-// function that prompts and validates user input
 function promptFor(question, valid){
   do{
     var response = prompt(question).trim();
@@ -380,12 +395,10 @@ function promptFor(question, valid){
   return response;
 }
 
-// helper function to pass into promptFor to validate yes/no answers
 function yesNo(input){
   return input.toLowerCase() === "yes" || input.toLowerCase() === "no";
 }
 
-// helper function to pass in as default promptFor validation
-function chars(input){
-  return true; // default validation only
+function chars(){
+  return true;
 }
