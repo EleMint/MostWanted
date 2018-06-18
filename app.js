@@ -248,7 +248,9 @@ function mainMenu(person, people){
   } 
   else {
   let displayOption = prompt("Found " + person.firstName + " " + person.lastName + " . Do you want to know their 'info', 'family', or 'descendants'? Type the option you want or 'restart' or 'quit'");
-
+  let myArr = [];
+  myArr.push(person);
+  
   switch(displayOption){
     case "info":
       let myObj = '';
@@ -260,11 +262,9 @@ function mainMenu(person, people){
       alert(myObj);
     break;
     case "family":
-    // TODO: get person's family
+    family(person, people, myArr);
     break;
     case "descendants":
-    let myArr = [];
-    myArr.push(person);
     descendants(myArr[0], people, myArr);
     if(myArr[0] === '')
     {
@@ -311,6 +311,53 @@ function descendants(person, people, myArr)
             descendants(people[i], people, myArr);
         }
     }
+}
+
+
+function ascendants(person, people,)
+{
+
+}
+
+function family(person, people, myArr)
+{
+  if(hasParents(person, people) === false && hasChild(person, people) === true)
+  {
+    descendants(person, people, myArr)
+  }
+  else if()
+  {
+
+  }
+
+}
+
+function hasParents(person, people)
+{
+  if(person.parents[0] !== undefined)
+  {
+    return true;
+  }
+  else
+  {
+    return false;
+  }
+}
+
+function hasChild(person, people)
+{
+  for(let i = 0; i < people.length; i++)
+  {
+    if(person.id === people[i].parents[0] || person.id === people[i],parents[1])
+    {
+      return true;
+    }
+    else
+    {
+      return false;
+    }
+  }
+
 }
 
 
