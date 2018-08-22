@@ -10,7 +10,7 @@ function app(people){
     mainMenu(foundPerson, people);
     break;
     case 'no':
-    searchByTraits(people);
+    searchByTraits(people, people);
     break;
     default:
     alert("Wrong! Please try again, following the instructions dummy. :)");
@@ -19,38 +19,44 @@ function app(people){
   }
 }
 
-function searchByTraits(people) {
-  let userSearchChoice = prompt("What would you like to search by? 'height', 'weight', 'eye color', 'gender', 'age', 'occupation'.");
+function searchByTraits(refinedPeople, people) {
+  let userSearchChoice = prompt("What would you like to search by? 'height', 'weight', 'eye color', 'gender', 'age', 'occupation'. Or type 'done' when completed.");
   let filteredPeople;
 
   switch(userSearchChoice) {
     case "height":
-      filteredPeople = searchByHeight(people);
+      filteredPeople = searchByHeight(refinedPeople);
       break;
     case "weight":
-      filteredPeople = searchByWeight(people);
+      filteredPeople = searchByWeight(refinedPeople);
       break;
     case "eye color":
-      filteredPeople =  searchByEyeColor(people);
+      filteredPeople =  searchByEyeColor(refinedPeople);
       break;
     case "gender":
-      filteredPeople = searchByGender(people);
+      filteredPeople = searchByGender(refinedPeople);
       break;
     case "age":
-      filteredPeople = searchByAge(people);
+      filteredPeople = searchByAge(refinedPeople);
       break;
     case "occupation":
-      filteredPeople = searchByOccupation(people);
+      filteredPeople = searchByOccupation(refinedPeople);
       break;
     case "id":
-      filteredPeople = searchById(people);
+      filteredPeople = searchById(refinedPeople);
+      break;
+    case "done":
+      mainMenu(refinedPeople, people);
       break;
     default:
       alert("You entered an invalid search type! Please try again.");
-      searchByTraits(people);
+      searchByTraits(refinedPeople, people);
       break;
   }
-  mainMenu(filteredPeople, people);
+  if(filteredPeople.length === 0){
+    searchByTraits(refinedPeople, people);
+  }
+  searchByTraits(filteredPeople, people);
 }
 
 function searchByHeight(people)
